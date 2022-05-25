@@ -1,0 +1,103 @@
+<html>
+  <head>
+  	<meta charset="UTF-8">
+    <title>Bystronic</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+    <link rel="stylesheet" href="assets/bootstrap-table.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.20.1/extensions/filter-control/bootstrap-table-filter-control.min.css">
+  </head>
+  <body>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="assets/bootstrap-table.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.20.1/extensions/filter-control/bootstrap-table-filter-control.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.20.1/extensions/toolbar/bootstrap-table-toolbar.min.js"></script>
+
+    <script src=""></script>
+    
+    <div class="container mt-2 mb-2">
+      <div id="toobar">
+        <button id="add" class="btn btn-primary">Add new</button>
+        <button id="remove" class="btn btn-danger">Remove</button>
+        
+        
+      </div>
+        <table
+        data-toggle="table"
+        data-pagination="true"
+        data-search="true"
+        data-search-align="left"
+        data-show-columns="true"
+        data-show-toggle="true"
+        data-show-refresh="true"
+        data-show-fullscreen="true"
+        data-show-pagination-switch="true"
+        data-pagination-pre-text="Previous"
+        data-pagination-next-text="Next"
+        data-pagination-h-align="right"
+        data-pagination-v-align="top"
+        data-pagination-detail-h-aligh="left"
+        data-pagination-v-align="top"
+        data-page-list="[10,20,30,40, All]"
+        data-url="https://monkeyapitmp001.azurewebsites.net/monkeyshelter"
+
+        data-height="860"
+
+        data-show-footer="false"
+
+        id="table"
+        data-toolbar="#toolbar"
+        data-advanced-search="true"
+        data-id-table="advancedTable"
+        data-filter-control="true"
+        data-filter-show-clear="true">
+
+        <thead>
+            <tr>
+              <th data-field="state" data-checkbox="true"></th>
+              <th data-field="_Id" data-sortable="true" data-switchable="false">ID</th>
+              <th data-field="name" data-sortable="true" data-switchable="false" data-filter-control="input">Name</th>
+              <th data-field="age" data-sortable="true" data-filter-control="select">Age</th>
+              <th data-field="weight" data-sortable="true" data-filter-control="select">Weight</th>
+              <th data-field="eyeColor" data-sortable="true" data-filter-control="select">Eye color</th>
+              <th data-field="species" data-sortable="true" data-filter-control="select">Species</th>
+              <th data-field="registered" data-sortable="true" data-filter-control="select">Registered</th>
+              <th data-field="favoriteFruit" data-sortable="true" data-filter-control="select">Favorite Fruit</th>
+            </tr>
+          </thead>
+        </table>
+    </div>
+
+    <script>
+      var table = $('#table')
+$('#add').on('click', function(){
+    var randomId = 100 + ~~(Math.random() * 100)
+    table.bootstrapTable('insertRow', {
+        index: 0,
+        row: {
+            id: randomId,
+            name: 'Name ' + randomId,
+
+        }
+    })
+})
+
+$('#remove').on('click', function(){
+    var ids = $.map(table.bootstrapTable('getSelections'), function(row){
+        return row.id
+    })
+    table.bootstrapTable('remove', {
+        field: 'id',
+        values: ids
+    })
+})
+
+
+    </script>
+
+
+  </body>
+</html>
